@@ -3,6 +3,7 @@ import { Institution } from '../models/institution.model';
 import { ContactService } from '../contact.service';
 import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 import { MessageService } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-contact-list-home',
@@ -11,7 +12,9 @@ import { MessageService } from 'primeng/api';
 })
 export class ContactListHomeComponent implements OnInit {
   institutions!: Institution[];
+  items: MenuItem[] | undefined;
   expandedRows = {};
+  filteredInstitutions: Institution[] = [];
 
   constructor(
     private contactService: ContactService,
@@ -20,11 +23,22 @@ export class ContactListHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getContactList();
+    this.items = [
+      {
+        label: 'Contact List',
+        icon: 'pi pi-home',
+      },
+      {
+        label: 'Add Contact',
+        icon: 'pi pi-plus',
+      },
+    ];
   }
 
   private getContactList() {
     this.contactService.getInstitutions().subscribe((data) => {
       this.institutions = data;
+      this.filteredInstitutions = [...this.institutions];
     });
   }
 
@@ -44,5 +58,18 @@ export class ContactListHomeComponent implements OnInit {
       detail: event.data.institutionName,
       life: 3000,
     });
+  }
+  onSearchInputChange(event: Event) {
+    const target = event.target as HTMLInputElement | null;
+    if (target) {
+      const value = target.value.toLowerCase();
+      if (value) {
+        this.filteredInstitutions = this.institutions.filter((institution) =>
+          institution.institutionName.toLowerCase().includes(value)
+        );
+      } else {
+        this.filteredInstitutions = [...this.institutions]; // Show all data if input is empty
+      }
+    }
   }
 }

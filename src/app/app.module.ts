@@ -11,14 +11,12 @@ import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { ContactService } from './contact.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ContactListHomeComponent
-  ],
+  declarations: [AppComponent, ContactListHomeComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -27,9 +25,10 @@ import { ContactService } from './contact.service';
     AccordionModule,
     ToastModule,
     MenubarModule,
-    ButtonModule
+    InputTextModule,
+    ButtonModule,
   ],
   providers: [ContactService, MessageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
