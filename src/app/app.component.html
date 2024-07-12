@@ -1,1 +1,15 @@
-<h1>Hi There!</h1>
+<div class="card">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="end">
+            <div class="flex align-items-center gap-2">
+                <input type="text" pInputText placeholder="Search" class="w-8rem sm:w-auto" />
+            </div>
+        </ng-template>
+    </p-menubar>
+    <app-contact-list-home></app-contact-list-home>
+</div>
+<footer class="footer">
+    <div class="container">
+      <span>Copyright © 2024 All rights reserved | arsbd</span>
+    </div>
+  </footer>

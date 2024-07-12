@@ -1,0 +1,32 @@
+.table {
+  width: 100%;
+}
+
+.inner-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.inner-table th, .inner-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.inner-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.expanded-content {
+  padding: 16px;
+  background-color: #f9f9f9;
+}
+
+.detail-row {
+  display: none;
+}
+
+.detail-row.expanded {
+  display: table-row;
+}
